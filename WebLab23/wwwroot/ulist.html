@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Читай/смотри</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <a>Hello!</a>
+    <p id="counter"></p>
+
+    <div>
+        <h3>Создание списка</h3>
+        <form>
+            <label for="createDiv">Имя:</label>
+            <input id="createDiv" type="text" />
+            <button onclick="createList(); return false;">Добавить</button>
+        </form>
+    </div>
+
+    <div id="editDiv">
+        <h3>Редактирование</h3>
+        <form class="my-form">
+            <input type="hidden" id="edit-id">
+            <input type="text" id="edit-url">
+            <button onclick="udateList(); return false;">Сохранить</button>
+            <a onclick="closeInput()" aria-label="Закрыть">&#10006;</a>
+        </form>
+    </div>
+
+    <h3>Списки</h3>
+    <div>
+        <div id="listsDiv">Сюда будут добавляются блоги, если веб-апи работает...</div>
+    </div>
+
+    <script src="js/script1.js"></script>
+
+    <h2><a href="arts.html">Библиотека</a></h2>
+</body>
+</html>

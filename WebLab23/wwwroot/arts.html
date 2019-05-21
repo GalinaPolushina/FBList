@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>База произведений</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .div-bord {
+            border-radius: 10px;
+            border: 1px solid #7a7b7e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="index.html">На главную</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="arts.html">Медиатека</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Posts.html">Мой список</a>
+        </li>
+        <li class="nav-item">
+            <div id="xuser">Что-то пошло не так...</div>
+            
+        </li>
+    </ul>
+
+    <p><img src="images/5635672.png" alt="Письма мастера дзен" width="100%"></p>
+    <h2 align="center">Книги, фильмы, мультфильмы и сериалы в одном месте!</h2>
+
+    <div id="actionMsg" class="msgClass"></div>
+    <div class="msgClass">
+        <div id="msgAuth"></div>
+        <div id="msg"></div>
+        <ul id="formError"></ul>
+    </div>
+
+    <div class="row parent">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6 text-center">
+            <div id="editDiv">
+                <h3>Редактирование</h3>
+                <form>
+                    <input type="hidden" id="edit-id">
+                    <label for="edit-type">Тип:</label>
+                    <select id="edit-type" type="text">
+                        <option disabled>Выберите тип</option>
+                        <option value="Книга">Книга</option>
+                        <option value="Фильм">Фильм</option>
+                        <option value="Сериал">Сериал</option>
+                        <option value="Анимация">Анимация</option>
+                    </select>
+                    <br>
+                    <label for="edit-title">Название:</label>
+                    <input id="edit-title" type="text" />
+                    <br>
+                    <label for="edit-descr">Описание:</label>
+                    <input id="edit-descr" type="text" />
+                    <br>
+                    <button class="btn btn-dark" onclick="udateArt(); return false;">Сохранить</button><br>
+                    <a onclick="closeInput()" aria-label="Закрыть">&#10006;</a><br><br>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <div>
+        <div id="artsDiv">Что-то пошло не так...</div>
+    </div>
+
+    <div class="row parent">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6 text-center">
+            <h4>Не нашли то, что искали?</h4>
+            <h3>Создать</h3>
+            <form>
+                <label for="edit-type">Тип:</label>
+                <select id="createDivType" type="text">
+                    <option disabled>Выберите тип</option>
+                    <option value="Книга">Книга</option>
+                    <option value="Фильм">Фильм</option>
+                    <option value="Сериал">Сериал</option>
+                    <option value="Анимация">Анимация</option>
+                </select>
+                <br>
+
+                <label for="createDivT">Название:</label>
+                <input id="createDivT" type="text" />
+                <br>
+
+                <label for="createDivD">Описание:</label>
+                <input id="createDivD" type="text" />
+                <br>
+                <button class="btn btn-dark" onclick="createArt(); return false;">Добавить</button><br>
+            </form>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <script src="js/arts.js"></script>
+
+</body>
+
+</html>

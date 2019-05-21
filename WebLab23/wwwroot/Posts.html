@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <style>
+        .div-bord {
+            border-radius: 10px;
+            border: 1px solid #7a7b7e;
+        }
+    </style>
+
+</head>
+<body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="index.html">На главную</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="arts.html">Медиатека</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="Posts.html">Мой список</a>
+        </li>
+        <li class="nav-item">
+            <div id="xuser"></div>
+        </li>
+    </ul>
+
+    <p><img src="images/5635672.png" alt="Письма мастера дзен" width="100%"></p>
+    <h2 align="center"></h2>
+
+    <div id="actionMsg" class="msgClass"></div>
+    <div class="msgClass">
+        <div id="msgAuth"></div>
+        <div id="msg"></div>
+        <ul id="formError"></ul>
+    </div>
+
+    <div class="row parent">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6 text-center">
+            <div id="editDiv">
+                <h3>Редактирование</h3>
+                <form>
+                    <input type="hidden" id="edit-id">
+                    <input type="hidden" id="edit-user">
+                    <label for="edit-art">Произведение:</label>
+                    <input id="edit-art" type="text" />
+                    <br>
+
+                    <label for="edit-type">Прогресс:</label>
+                    <select id="edit-type" type="text">
+                        <option disabled>Выберите тип</option>
+                        <option value="В очереди">В очереди</option>
+                        <option value="В процессе">В процессе</option>
+                        <option value="Окончено">Окончено</option>
+                    </select>
+                    <br>
+
+                    <label for="edit-descr">Описание:</label>
+                    <input id="edit-descr" type="text" />
+                    <br>
+
+                    <label for="edit-rat">Рейтинг:</label>
+                    <input id="edit-rat" type="text" />
+                    <br>
+                    <button class="btn btn-dark" onclick="updatePost(); return false;">Сохранить</button><br>
+                    <a onclick="closeInput()" aria-label="Закрыть">&#10006;</a><br><br>
+                </form>
+               
+            </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <div>
+        <div id="postsDiv">Сюда будут добавляются блоги, если веб-апи работает...</div>
+    </div>
+
+    <div class="row parent">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6 text-center">
+            <h3>Создать</h3>
+            <form>
+                <label for="createDivArt">Произведение:</label>
+                <input id="createDivArt" type="text" />
+                <br>
+
+                <label for="createDivTypeP">Прогресс:</label>
+                <select id="createDivTypeP" type="text">
+                    <option disabled>Выберите тип</option>
+                    <option value="В очереди">В очереди</option>
+                    <option value="В процессе">В процессе</option>
+                    <option value="Окончено">Окончено</option>
+                </select>
+                <br>
+
+                <label for="createDivDes">Описание:</label>
+                <input id="createDivDes" type="text" />
+                <br>
+
+                <label for="createDivRat">Рейтинг:</label>
+                <input id="createDivRat" type="text" />
+                <br>
+                <button class="btn btn-dark" onclick="createPost(); return false;">Добавить</button><br />
+            </form>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <script src="js/posts.js"></script>
+</body>
+</html>
