@@ -53,7 +53,7 @@ function getPosts() {
                 if (posts) {
                     var i;
                     for (i in posts) {
-                        //if (posts[i].userId == userID) {
+                        if (posts[i].userId == userID) {
                         postsHTML += '<div class="row">';
                         postsHTML += '<div class="col-sm-2">';
                         postsHTML += '</div>';
@@ -75,7 +75,7 @@ function getPosts() {
                         postsHTML += '</div>';
                         postsHTML += '</div>';
                         postsHTML += '<br>';
-                       // }
+                       }
                     }
                 }
             }

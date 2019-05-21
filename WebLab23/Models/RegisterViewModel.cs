@@ -16,7 +16,7 @@ namespace WebLab23.Models
         [Required]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
+        [Display(Name = "Подтвердите пароль")]
         public string PasswordConfirm { get; set; }
     }
 }

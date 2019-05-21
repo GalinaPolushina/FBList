@@ -187,16 +187,12 @@ function udateArt() {
     var request = new XMLHttpRequest();
     request.open("PUT", uri + art.artid);
     request.onload = function () {
-        //document.getElementById("msg").innerHTML = "";
         document.getElementById("msg").innerHTML = "";
         var msg = "";
         if (request.status === 401) {
-            msg = "У вас не хватает прав для редактирования";
+            msg = "У вас не хватает прав для редактирования :с";
             console.log(msg);
         } else if (request.status === 204) {
-            msg = "Запись редактируется";
-            console.log(msg);
-            getArts();
             closeInput();
             elm.style.display = "none";
             getArts();

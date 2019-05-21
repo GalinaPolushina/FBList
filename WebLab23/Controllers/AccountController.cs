@@ -34,7 +34,7 @@ namespace WebLab23.Controllers
                     await _signInManager.SignInAsync(user, false);
                     var msg = new
                     {
-                        message = "Добавлен новый пользователь: " + user.UserName
+                        message = "Добро пожаловать, " + user.UserName
                     };
                     return Ok(msg);
                 }
@@ -46,7 +46,7 @@ namespace WebLab23.Controllers
                     }
                     var errorMsg = new
                     {
-                        message = "Пользователь не добавлен.",
+                        message = "Пользователь не добавлен :с",
                         error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
                     };
                     return Ok(errorMsg);
@@ -56,7 +56,7 @@ namespace WebLab23.Controllers
             {
                 var errorMsg = new
                 {
-                    message = "Неверные входные данные.",
+                    message = "Неверные входные данные :с",
                     error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
                 };
                 return Ok(errorMsg);
@@ -76,16 +76,16 @@ namespace WebLab23.Controllers
                 {
                     var msg = new
                     {
-                        message = "Выполнен вход пользователем: " + model.Email
+                        message = "С возвращением, " + model.Email
                     };
                     return Ok(msg);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                    ModelState.AddModelError("", "Неправильный логин и (или) пароль :с");
                     var errorMsg = new
                     {
-                        message = "Вход не выполнен.",
+                        message = "Вход не выполнен :с",
                         error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
                     };
                     return Ok(errorMsg);
@@ -95,7 +95,7 @@ namespace WebLab23.Controllers
             {
                 var errorMsg = new
                 {
-                    message = "Вход не выполнен.",
+                    message = "Вход не выполнен :с",
                     error = ModelState.Values.SelectMany(e => e.Errors.Select(er => er.ErrorMessage))
                 };
                 return Ok(errorMsg);
@@ -111,7 +111,7 @@ namespace WebLab23.Controllers
             await _signInManager.SignOutAsync();
             var msg = new
             {
-                message = "Выполнен выход."
+                message = "До встречи!"
             };
             return Ok(msg);
         }

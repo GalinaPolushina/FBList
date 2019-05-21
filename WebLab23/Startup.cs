@@ -34,8 +34,6 @@ namespace WebLab23
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-           /* services.AddDbContext<ULContext>(opt =>
-            opt.UseInMemoryDatabase("FBList"));*/
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.ConfigureApplicationCookie(options =>
