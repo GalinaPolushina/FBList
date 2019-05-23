@@ -19,11 +19,6 @@ namespace WebLab23.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            /*modelBuilder.Entity<UList>(entity =>
-            {
-                entity.Property(e => e.Url).IsRequired();
-            });*/
-
             modelBuilder.Entity<Post>(entity =>
             {
                 entity.HasOne(us => us.User)

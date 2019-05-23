@@ -1,11 +1,32 @@
 ﻿body {
 }
 
+/*стиль блока сообщений*/
 .msgClass {
-    color: red;
+    color: #800000;
+}
+/*стиль обычных блоков*/
+.div-bord {
+    border-radius: 10px;    
+    border: 1px solid #7a7b7e;
 }
 
-.div-bord {
+/*стиль блоков со статусом "завершено"*/
+.div-bord-done {
     border-radius: 10px;
-    border: 1px solid #7a7b7e;
+    background-color: #DCDCDC;
+    border: 1px solid #000000;
+}
+
+/*стиль блоков со статусом "в процессе"*/
+.div-bord-queue {
+    border-radius: 10px;
+    border-width: 5px 5px 5px 5px;
+    background-color: #B0E0E6;
+    border: 1px solid;
+}
+
+/*стиль блока ошибок*/
+.msg-error {
+    color: red;
 }

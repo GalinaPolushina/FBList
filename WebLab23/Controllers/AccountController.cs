@@ -18,6 +18,7 @@ namespace WebLab23.Controllers
             _signInManager = signInManager;
         }
 
+        //Добавление нового пользователя
         [HttpPost]
         [Route("api/account/register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
@@ -63,6 +64,7 @@ namespace WebLab23.Controllers
             }
         } 
 
+        //Вход зарегистрированного пользователя
         [HttpPost]
         [Route("api/account/login")]
         //[ValidateAntiForgeryToken]
@@ -102,6 +104,7 @@ namespace WebLab23.Controllers
             }
         }
 
+        //Выход пользователя
         [HttpPost]
         [Route("api/account/logoff")]
         //[ValidateAntiForgeryToken]
@@ -116,6 +119,7 @@ namespace WebLab23.Controllers
             return Ok(msg);
         }
         
+        //Получение данных о текущем пользователе
         [HttpPost]
         [Route("api/Account/isAuthenticated")]
         //[ValidateAntiForgeryToken]

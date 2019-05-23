@@ -1,17 +1,15 @@
 ﻿const uri = "/api/post/";
 let items = null;
 
+//Функции, вызываемые при загрузке страницы 
 document.addEventListener("DOMContentLoaded", function (event) {
     getUser();
     getPosts();
-    console.log("Вызов юзера");
 });
 
 var userID;
-
-
+//Функция для получения и отображения имени текуего пользователя
 function getUser() {
-    console.log("Вызов юзера ______");
     let request = new XMLHttpRequest();
     var user;
     var user_name;
@@ -20,26 +18,24 @@ function getUser() {
     request.open("POST", "/api/Account/isAuthenticated", true);
     request.onload = function () {
         console.log(JSON.parse(request.responseText));
-        console.log("Заходим в ответ");
-        let userHTML = '<a class="nav-link disabled" href="#">';
+        let userHTML = '<a class="nav-link disabled" href="#">Вы вошли как ';
         user = JSON.parse(request.responseText);
         console.log(user);
         if (user != -1) {
-            console.log("Юзер опознан");
             user_name = user.userName;
             console.log(user_name);
             userHTML += user_name + '</a>';
             userID = user.id;
         }
         else {
-            userHTML += 'Гость</a>';;
-            console.log("Юзер не опознан");
+            userHTML += 'Гость</a>';
         }
         document.querySelector("#xuser").innerHTML = userHTML;
     }
     request.send();
 }
 
+//Получение постов текущего пользователя
 function getPosts() {
     closeInput();
     let request = new XMLHttpRequest();
@@ -58,7 +54,13 @@ function getPosts() {
                         postsHTML += '<div class="col-sm-2">';
                         postsHTML += '</div>';
 
-                        postsHTML += '<div class="col-sm-8 div-bord">';
+                        if (posts[i].type == "Окончено")
+                                postsHTML += '<div class="col-sm-8 div-bord-done">';
+                        if (posts[i].type == "В процессе")
+                                postsHTML += '<div class="col-sm-8 div-bord">';
+                        if (posts[i].type == "В очереди")
+                                postsHTML += '<div class="col-sm-8 div-bord-queue">';
+
                         postsHTML += '<h3>' + posts[i].type + '</h3>';
                         postsHTML += '<h4>' + posts[i].art.title + '</h4>';
                         postsHTML += '<h5>Комментарий:</h5>';                        
@@ -66,8 +68,8 @@ function getPosts() {
                         postsHTML += '<h5>Оценка:</h5>'; 
                         postsHTML += '<h5>' + posts[i].rating + '</h5>';
                         postsHTML += '<br>';
-                            postsHTML += '<button class="btn btn-secondary btn-sm" onclick="editPost(' + posts[i].postId + ')">Изменить</button> ';
-                            postsHTML += '<button class="btn btn-secondary btn-sm" onclick="deletePost(' + posts[i].postId + ')">Удалить</button><br><br>';                            
+                        postsHTML += '<button class="btn btn-secondary btn-sm" onclick="editPost(' + posts[i].postId + ')">Изменить</button> ';
+                        postsHTML += '<button class="btn btn-secondary btn-sm" onclick="deletePost(' + posts[i].postId + ')">Удалить</button><br><br>';                            
 
                         postsHTML += '</div>';
 
@@ -86,7 +88,7 @@ function getPosts() {
     request.send();
 }
 
-
+//Создание поста
 function createPost() {
     let artText = "";
     let typeText1 = "";
@@ -111,7 +113,7 @@ function createPost() {
             console.log(msg);
         } else if (request.status === 201) {
             console.log("201");
-            msg = "Запись добавляется";
+            msg = "Запись успешно добавлена";
             document.querySelector("#actionMsg").innerHTML = msg;
             document.getElementById("msg").innerHTML = "";
             getPosts();
@@ -131,6 +133,7 @@ function createPost() {
     request.send(JSON.stringify({ artId: artText, type: typeText1, descr: descrText, rating: rateText, userId: userText }));
 }
 
+//Вызов разметки для редактирования поста
 function editPost(id) {
     let elm = document.querySelector("#editDiv");
     document.getElementById("msg").innerHTML = "";
@@ -155,6 +158,7 @@ function editPost(id) {
     }
 }
 
+//Обновление поста
 function updatePost() {
     const post = {
         postId: document.querySelector("#edit-id").value,
@@ -175,7 +179,7 @@ function updatePost() {
             msg = "У вас не хватает прав для редактирования";
             console.log(msg);
         } else if (request.status === 204) {
-            msg = "Запись редактируется";
+            msg = "Запись изменена";
             console.log(msg);
             //getPosts();
             closeInput();
@@ -192,6 +196,7 @@ function updatePost() {
     request.send(JSON.stringify(post));
 }
 
+//Удаление поста
 function deletePost(id) {
     let request = new XMLHttpRequest();
     console.log(id);
@@ -217,6 +222,7 @@ function deletePost(id) {
     request.send();
 }
 
+//Функция для очистки разметки ввода
 function closeInput() {
     let elm = document.querySelector("#editDiv");
     elm.style.display = "none";

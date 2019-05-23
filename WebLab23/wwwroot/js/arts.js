@@ -1,51 +1,40 @@
 ﻿const uri = "/api/art/";
 let items = null;
 
+//Функции, вызываемые при загрузке страницы Arts
 document.addEventListener("DOMContentLoaded", function (event) {
     getArts();
     getUser();
 });
 
+//Функция для получения и отображения имени текуего толькователя
 function getUser() {
-    console.log("Вызов юзера ______");
     let request = new XMLHttpRequest();
     var user;
     var user_name;
-
-    console.log("Открывается запрос");
+    
     request.open("POST", "/api/Account/isAuthenticated", true);
     request.onload = function () {
         console.log(JSON.parse(request.responseText));
         console.log("Заходим в ответ");
-        let userHTML = '<a class="nav-link disabled" href="#">';
+        let userHTML = '<a class="nav-link disabled" href="#">Вы вошли как ';
         user = JSON.parse(request.responseText);
         console.log(user);
         if (user != -1) {
-            console.log("Юзер опознан");
             user_name = user.userName;
             console.log(user_name);
             userHTML += user_name + '</a>';
             userID = user.id;
         }
         else {
-            userHTML += 'Гость</a>';;
-            console.log("Юзер не опознан");
+            userHTML += 'Гость</a>';
         }
         document.querySelector("#xuser").innerHTML = userHTML;
     }
     request.send();
 }
 
-function getCount(data) {
-    const el = document.querySelector("#counter");
-    let name = "Количество списков: ";
-    if (data > 0) {
-        el.innerText = name + data;
-    } else {
-        el.innerText = "Списков еще нет";
-    }
-}
-
+//Функция получения из БД информации о произведениях и формирования разметки
 function getArts() {
     closeInput();
     let request = new XMLHttpRequest();
@@ -58,7 +47,6 @@ function getArts() {
         console.log("Ответ:");
         console.log(JSON.parse(request.responseText));
         if (typeof arts !== "undefined") {
-            //getCount(lists.length);
             if (arts.length > 0) {
                 if (arts) {
                     var i;
@@ -118,6 +106,7 @@ function getArts() {
     request.send();
 }
 
+//Функция для создания нового произведения
 function createArt() {
     let titleText = "";
     let typeText = "";
@@ -127,6 +116,7 @@ function createArt() {
     descrText = document.querySelector("#createDivD").value;
     var request = new XMLHttpRequest();
     request.open("POST", uri);
+    //Обработка ответа
     request.onload = function () {
         console.log(request.status);
         document.getElementById("msg").innerHTML = "";
@@ -156,6 +146,7 @@ function createArt() {
     request.send(JSON.stringify({ title: titleText, type: typeText, descr: descrText }));
 }
 
+//Функция для создания разметки для обновления произведения
 function editArt(id) {
     let elm = document.querySelector("#editDiv");
     document.getElementById("msg").innerHTML = "";
@@ -177,6 +168,7 @@ function editArt(id) {
     }
 }
 
+//Функция для обновления произведения
 function udateArt() {
     const art = {
         artid: document.querySelector("#edit-id").value,
@@ -207,6 +199,7 @@ function udateArt() {
     request.send(JSON.stringify(art));
 }
 
+//Функция удаления произведения
 function deleteArt(id) {
     let request = new XMLHttpRequest();
     console.log(id);
@@ -232,6 +225,7 @@ function deleteArt(id) {
     request.send();
 }
 
+//Функция для скрытия блока
 function closeInput() {
     let elm = document.querySelector("#editDiv");
     elm.style.display = "none";

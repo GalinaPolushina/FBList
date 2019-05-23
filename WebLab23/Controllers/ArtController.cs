@@ -24,12 +24,14 @@ namespace WebLab23.Controllers
             }
         }
 
+        //Получение всех записей
         [HttpGet]
         public IEnumerable<Art> GetAll()
         {
             return _context.Art;
         }
 
+        //Получение записи по ключу
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArt([FromRoute] int id)
         {
@@ -49,6 +51,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin, user")]
+        //Создание записи
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Art art)
         {
@@ -64,6 +67,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin, user")]
+        //Обновление записи
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Art art)
         {
@@ -85,6 +89,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin")]
+        //Удаление записи
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

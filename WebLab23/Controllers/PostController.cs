@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace WebLab23.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
     public class PostController : ControllerBase
     {
@@ -24,6 +25,7 @@ namespace WebLab23.Controllers
             }
         }
 
+        //Получение всех записей
         [HttpGet]
         public IEnumerable<Post> GetAll()
         {
@@ -32,6 +34,7 @@ namespace WebLab23.Controllers
             //return _context.UList.Include(p => p.Post).ThenInclude(a => a.Art);
         }
 
+        //Получение записи по ключу
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost([FromRoute] int id)
         {
@@ -51,6 +54,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin, user")]
+        //Создание записи
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Post post)
         {
@@ -66,6 +70,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin, user")]
+        //Обновление записи
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Post post)
         {
@@ -89,6 +94,7 @@ namespace WebLab23.Controllers
         }
 
         [Authorize(Roles = "admin, user")]
+        //Удаление записи
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

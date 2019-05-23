@@ -1,4 +1,6 @@
 ﻿const uri = "/api/account/Register";
+
+//Регистрация
 function Register() {
     // Считывание данных с формы
     var email = document.querySelector("#email").value;
